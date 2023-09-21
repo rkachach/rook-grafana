@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  namespace: rook-ceph
+data:
+  prometheus.yaml: |
+    apiVersion: 1
+
+    deleteDatasources:
+      - name: 'Dashboard1'
+        orgId: 1
+
+    datasources:
+      - name: 'Dashboard1'
+        type: 'prometheus'
+        access: 'proxy'
+        orgId: 1
+        url: 'http://192.168.61.204:30900'
+        basicAuth: false
+        isDefault: true
+        editable: false
+
+      - name: 'Loki'
+        type: 'loki'
+        access: 'proxy'
+        url: ''
+        basicAuth: false
+        isDefault: false
+        editable: false

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-ini
+  namespace: rook-ceph
+data:
+  grafana.ini: |
+    [users]
+      default_theme = light
+    [auth.anonymous]
+      enabled = true
+      org_name = 'Main Org.'
+      org_role = 'Viewer'
+    [server]
+      domain = 'bootstrap.storage.lab'
+      protocol = https
+      cert_file = /etc/grafana/certs/tls.crt
+      cert_key  = /etc/grafana/certs/tls.key
+      http_port = 3000
+      http_addr =
+    [snapshots]
+      external_enabled = false
+    [security]
+      disable_initial_admin_creation = true
+      cookie_secure = true
+      cookie_samesite = none
+    cookie_secure = true
+    cookie_samesite = none
+    allow_embedding = true
