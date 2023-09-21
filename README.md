@@ -1,11 +1,23 @@
+
 # Rook grafana configuration
 
-In order to configure grafana for Rook we have to configure two components **Prometheus**  and **Grafana**. For Prometheus the user has to follow the [instructions](https://rook.io/docs/rook/latest/Storage-Configuration/Monitoring/ceph-monitoring/) step by step. In this setup Grafana consumes the metrics provided by Prometheus to show nice dashboards to the user.
+In order to configure grafana for Rook we have to configure two components **Prometheus**  and **Grafana**. For Prometheus the user has to follow the [instructions](https://rook.io/docs/rook/latest/Storage-Configuration/Monitoring/ceph-monitoring/) step by step. In this setup Grafana consumes ceph metrics provided by Prometheus to show nice dashboards to the user.
 
 
 ### Grafana configuration
 
-Before going on with Grafana configuratio please make sure Prometheus is up & running correctly in your Rook cluster. To get the URL where Prometheus is litening user can use (save its value as we will need it later):
+#### Assumptions
+Before going on with the rest of this tutorial please make sure:
+
+ 1. You have a healthy ceph Rook cluster
+ 2. Prometheus is configured and running
+ 3. dashboard is configured with https (ssl: true)
+
+First,  let's clone this repository to get all the configuration files we will ned for the setup:
+
+    git clone https://github.com/rkachach/rook-grafana.git
+
+Before going on with Grafana configuration please make sure Prometheus is up & running correctly in your Rook cluster. To get the URL where Prometheus is litening user can use (save its value as we will need it later):
 
     echo "http://$(kubectl -n rook-ceph -o jsonpath={.status.hostIP} get pod prometheus-rook-prometheus-0):30900"
 
