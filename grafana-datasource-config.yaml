@@ -16,7 +16,7 @@ data:
         type: 'prometheus'
         access: 'proxy'
         orgId: 1
-        url: 'http://192.168.61.204:30900'
+        url: 'http://<prometheus-service-ip>:<port>'
         basicAuth: false
         isDefault: true
         editable: false
